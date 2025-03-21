@@ -1,0 +1,12 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8000:5000"
+    volumes:
+      - .:/code  # Creates a volume to link your current directory to the container's /code directory
+    environment:
+      - FLASK_APP=main.py
+      - FLASK_RUN_HOST=0.0.0.0  # Ensures Flask runs on all network interfaces inside the container
+    command: flask run --host=0.0.0.0 --port=5000  # Ensures the Flask app runs on the correct port
+    restart: always  # Optional: Ensures the container restarts if it crashes
